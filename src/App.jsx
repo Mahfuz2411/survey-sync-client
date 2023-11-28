@@ -1,10 +1,16 @@
+import { Outlet } from "react-router-dom";
+import Header from "./components/AppComponents/Header";
+import { ToastContainer } from "react-toastify";
+
 function App() {
 
   return (
     <>
-      <h1>Hello from App</h1>
+      <ToastContainer/>
+      <Header/>
+      <Outlet/>
     </>
   )
 }
 
-export default App
+export default App;
