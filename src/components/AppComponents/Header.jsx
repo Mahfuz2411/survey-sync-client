@@ -31,21 +31,8 @@ const Header = () => {
       <div className="container mx-auto navbar">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+            <label tabIndex={0} className="lg:hidden">
+              <img src={logo} alt=""  className="w-8 h-8 md:w-10 md:h-10 mr-5 rounded-full"/>
             </label>
             <ul
               tabIndex={0}
@@ -55,12 +42,12 @@ const Header = () => {
             </ul>
           </div>
           <div className="flex justify-center items-center gap-5">
-            <Link to={`/`}>
+            <Link to={`/`} className="hidden lg:flex">
               <img src={logo} alt=""  className="w-10 h-10 rounded-full"/>
             </Link>
             <Link
               to="/"
-              className="normal-case text-sm md:text-xl font-bold border-2 border-black p-1 md:p-2"
+              className="normal-case text-sm md:text-xl font-bold p-1 md:p-2 hidden md:flex"
             >
               Servey Sync
             </Link>
@@ -74,7 +61,7 @@ const Header = () => {
             <div className="flex justify-center items-center gap-2">
               <button
                 onClick={() => logOut()}
-                className="font-bold text-sm md:text-xl border-2 border-black p-1 md:p-2"
+                className="font-bold text-sm md:text-xl p-1 md:p-2"
               >
                 Sign Out
               </button>

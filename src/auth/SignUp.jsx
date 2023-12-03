@@ -1,21 +1,12 @@
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsGoogle } from "react-icons/bs";
-import {
-  // getAuth,
-  // signInWithPopup,
-  // GoogleAuthProvider,
-  updateProfile,
-} from "firebase/auth";
-// import app from "../firebase/firebase.config";
-
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useState, useContext } from "react";
+import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../contexts/AuthProvider";
 import auth from "../firebase/firebase.config";
-
-// const auth = getAuth(app);
-// const provider = new GoogleAuthProvider();
+import Swal from "sweetalert2";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -51,10 +42,10 @@ const SignUp = () => {
       return false;
     }
     return true;
-  }
+  };
 
   const navigate = useNavigate();
-  const { signInWithGoogle, createUser } = useContext(AuthContext);
+  const { signInWithGoogle, createUser, setAccess } = useContext(AuthContext);
 
   const handleOnChangeInp = (e) => {
     setUser({
@@ -65,7 +56,7 @@ const SignUp = () => {
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
-    if(!passValidator(user.password)) {
+    if (!passValidator(user.password)) {
       return toast("Password requirements not met.");
     }
     createUser(user.email, user.password)
@@ -75,8 +66,42 @@ const SignUp = () => {
           photoURL: user.imgLink,
         })
           .then(() => {
-            navigate("/");
-            toast("SignUp successful");
+            // toast("SignUp successful");
+
+            // TODO: Tanstack should added
+            // Store email and access in database
+            fetch(`http://localhost:5000/users/${user.email}`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                name: user.fullName,
+                email: user.email,
+                access: "user",
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  setAccess("user");
+                  Swal.fire({
+                    title: "Succes",
+                    text: "User added succesfully",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                  });
+                  navigate("/");
+                }
+              })
+              .catch(() => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong",
+                  confirmButtonText: "Ok",
+                });
+              });
           })
           .catch((error) => {
             toast(error.message);
@@ -87,9 +112,44 @@ const SignUp = () => {
 
   const handleSingUpWithGoogle = () => {
     signInWithGoogle()
-      .then(() => {
-        navigate("/");
+      .then(({user}) => {
         toast("SignUp successful");
+
+        // TODO: Tanstack should added
+        // Store email and access in database
+        fetch(`http://localhost:5000/users/${user.email}`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name: user.displayName,
+            email: user.email,
+            access: "user",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              setAccess("user");
+              Swal.fire({
+                title: "Succes",
+                text: "User added succesfully",
+                icon: "success",
+                confirmButtonText: "Ok",
+              });
+
+              navigate("/");
+            }
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong",
+              confirmButtonText: "Ok",
+            });
+          });
       })
       .catch(() => toast("Error occured"));
   };
@@ -178,6 +238,5 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
 
 //Password must contain a uppercase and one special character and minimum length 6

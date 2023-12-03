@@ -6,40 +6,52 @@ import Dashboard from "../Dashboard";
 import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
 import Surveys from "../pages/Surveys";
-
+import PrivateRoute from "./PrivateRoute";
+import Users from "../pages/Users";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
-    errorElement: <Error/>,
+    element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: "/login",
-        element: <SignIn/>
+        element: <SignIn />,
       },
       {
         path: "/signup",
-        element: <SignUp/>
+        element: <SignUp />,
       },
       {
-        path: "/surveys",
-        element: <Surveys/>
-      }
-    ]
+        path: "surveys",
+        element: (
+          <PrivateRoute>
+            <Surveys />
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>,
-    errorElement: <Error/>,
-    
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    errorElement: <Error />,
+    children: [
+      {
+        path: "users",
+        element: <Users />
+      }
+    ]
   },
 ]);
 
-
 export default router;
-
