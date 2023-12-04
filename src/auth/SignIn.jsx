@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
+import Swal from "sweetalert2";
 // import Swal from "sweetalert2";
 
 // {
@@ -85,16 +86,6 @@ const SignIn = () => {
   const handleSingInWithGoogle = () => {
     // TODO: Tanstack should added
     // get email and access in database
-    // fetch(`http://localhost:5000/users/${user.email}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if(data) {
-
-    //     }
-    //   })
-    //   .catch(() => {
-    //     toast("User not found");
-    //   });
     signInWithGoogle()
       .then(({ user }) => {
         fetch(`http://localhost:5000/users/${user.email}`, {
@@ -110,8 +101,6 @@ const SignIn = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("abc");
-            console.log(data);
             if (data.insertedId) {
               setAccess("user");
               navigate("/");
@@ -124,10 +113,22 @@ const SignIn = () => {
             }
           })
           .catch(() => {
-            toast("Error occured");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Some data is missing",
+              confirmButtonText: "Ok",
+            });
           });
       })
-      .catch(() => toast("Error occured"));
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+          confirmButtonText: "Ok",
+        });
+      });
   };
 
   return (

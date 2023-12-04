@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/logo.png";
-import { FaComments, FaDollarSign, FaHome, FaUsers } from "react-icons/fa";
+import { FaComments, FaDollarSign, FaHome, FaUsers, FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,6 +11,10 @@ const Navbar = () => {
       <NavLink to="users" className={`flex items-center ${wideNab?"":"justify-center"} gap-5 p-2 bg-white/75 hover:bg-white/50 m-2 rounded-xl font-medium`}>
         <FaUsers />
         <p className={`${wideNab?"":"hidden"}`}>Users</p>
+      </NavLink>
+      <NavLink to="create" className={`flex items-center ${wideNab?"":"justify-center"} gap-5 p-2 bg-white/75 hover:bg-white/50 m-2 rounded-xl font-medium`}>
+        <FaEdit />
+        <p className={`${wideNab?"":"hidden"}`}>Create</p>
       </NavLink>
       <NavLink className={`flex items-center ${wideNab?"":"justify-center"} gap-5 p-2 bg-white/75 hover:bg-white/50 m-2 rounded-xl font-medium`}>
         <FaComments />

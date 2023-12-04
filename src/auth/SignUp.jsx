@@ -85,13 +85,8 @@ const SignUp = () => {
               .then((data) => {
                 if (data.insertedId) {
                   setAccess("user");
-                  Swal.fire({
-                    title: "Succes",
-                    text: "User added succesfully",
-                    icon: "success",
-                    confirmButtonText: "Ok",
-                  });
                   navigate("/");
+                  toast("SignUp successful");
                 }
               })
               .catch(() => {
