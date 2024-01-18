@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Error from "../pages/Error";
-import Home from "../pages/Home";
+import Home from "../pages/AppPages/Home";
 import Dashboard from "../Dashboard";
 import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
-import Surveys from "../pages/Surveys";
+import Surveys from "../pages/AppPages/Surveys";
 import PrivateRoute from "./PrivateRoute";
 import Users from "../pages/Users";
 import CreateSurvey from "../pages/CreateSurvey";
-import SurveyDetails from "../pages/SurveyDetails";
+import SurveyDetails from "../pages/AppPages/SurveyDetails";
+import Pricing from "../pages/AppPages/Pricing";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             <Surveys />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "pricing",
+        element: <Pricing />,
       },
       {
         path: "details/:id",

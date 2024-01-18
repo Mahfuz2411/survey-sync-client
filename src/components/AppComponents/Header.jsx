@@ -20,6 +20,11 @@ const Header = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink to="/pricing" className="font-bold">
+          Pricing
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard" className="font-bold">
           My Dashboard
         </NavLink>

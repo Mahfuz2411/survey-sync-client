@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SCard from "../components/AppComponents/SCard";
+import SCard from "../../components/AppComponents/SCard";
 
 
 const Surveys = () => {
