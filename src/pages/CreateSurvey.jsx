@@ -29,9 +29,6 @@ const CreateSurvey = () => {
     const deadline = form.deadline.value;
     const currentMoment = moment();
     const like = 0;
-    const dislike = 0;
-    const yes = 0;
-    const no = 0;
     const vote = 0;
 
 
@@ -60,9 +57,6 @@ const CreateSurvey = () => {
         deadline,
         status: 'active',
         like,
-        dislike,
-        yes,
-        no,
         vote,
       };
       fetch(`${url}/createsurvey`, {

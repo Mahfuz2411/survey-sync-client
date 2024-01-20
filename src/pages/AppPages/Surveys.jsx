@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SCard from "../../components/AppComponents/SCard";
 import { url } from "../../constants/constats";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 
 const Surveys = () => {
+  const { user, access } = useContext(AuthContext);
   const [surveys, setSurveys] = useState([]);
   useEffect(() => {
-    fetch(`${url}/featured`)
+    fetch(`${url}/allsurvey`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setSurveys(data));
-  }, []);
+  }, [user]);
   return (
     <>
       <div className="bg-success/20 py-10">

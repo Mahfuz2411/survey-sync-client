@@ -1,10 +1,39 @@
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { url } from "../../constants/constats";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const SCard = ({ survey }) => {
-  // console.log(survey);
+  const { user, access } = useContext(AuthContext);
+  const [likeCount, setLikeCount] = useState(0);
+  const [voteCount, setVoteCount] = useState(0);
+
+
+  useEffect(()=> {
+    fetch(`${url}/like/${survey._id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setLikeCount(data.likeCount));
+    
+      fetch(`${url}/totalvote/${survey._id}`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          email: user.email,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setVoteCount(data.totalVote));  
+  },[]);
+
+
   return (
     <>
-      
       <div className="card w-full mx-auto bg-base-100 shadow-xl">
         <div className="card-body">
          <div className="flex">
