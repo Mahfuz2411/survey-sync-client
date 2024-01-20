@@ -2,14 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import { url } from "../../constants/constats";
 
 const SurveyDetails = () => {
   const { user, access } = useContext(AuthContext);
   const [survey, setSurvey] = useState({});
+  const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
+  const [yes, setYes] = useState(false);
+  const [no, setNo] = useState(false);
+  const [likeCount, setLikeCount] = useState(false);
+  const [dislikeCount, setDislikeCount] = useState(false);
+  const [yesCount, setYesCount] = useState(false);
+  const [noCount, setNoCount] = useState(false);
+
   let { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/surveydetails/${id}`, {
+    fetch(`${url}/surveydetails/${id}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -17,71 +27,174 @@ const SurveyDetails = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setSurvey(data));
-  }, [user, survey]);
+      .then((data) => setSurvey(data))
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+          confirmButtonText: "Ok",
+        });
+      });
+
+    
+    
+
+  }, [user]);
+
+  useEffect(()=> {
+    fetch(`${url}/liked/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setLiked(data.liked));
+
+    fetch(`${url}/disliked/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDisliked(data.disliked));
 
 
-  const handleClick = (obj)=> {
-    fetch(`http://localhost:5000/voteorreact/${id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          "email": user.email,
-        },
-        body: JSON.stringify(obj),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          if (data.modifiedCount) {
-            form.reset();
-            Swal.fire({
-              title: "Succes",
-              text: "Succesfully done",
-              icon: "success",
-              confirmButtonText: "Ok",
-            });
-            navigate("/myjobs");
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong",
-              confirmButtonText: "Ok",
-            });
-          }
-        })
-        .catch(() => {
+    fetch(`${url}/like/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setLikeCount(data.likeCount));
+
+    fetch(`${url}/dislike/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDislikeCount(data.dislikeCount));
+  },[liked, disliked]);
+
+  const handleLikeClick = () => {
+    fetch(`${url}/like/${id}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+      body: JSON.stringify({ user }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          setDisliked(false);
+          setLiked(true);
           Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong",
+            title: "Succes",
+            text: "Like added succesfully",
+            icon: "success",
             confirmButtonText: "Ok",
           });
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+          confirmButtonText: "Ok",
         });
-  }
+      });
+  };
+  const handleDislikeClick = () => {
+    fetch(`${url}/dislike/${id}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        email: user.email,
+      },
+      body: JSON.stringify({ user }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          setLiked(false);
+          setDisliked(true);
+          Swal.fire({
+            title: "Succes",
+            text: "Dislike added succesfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
   // console.log(survey);
+  console.log(liked, disliked);
+  console.log(likeCount, dislikeCount);
   return (
     <>
       <div className="container mx-auto p-10">
         <h1 className="text-5xl text-success p-5">{survey.tittle}</h1>
         <p className="p-5">{survey.description}</p>
         <div className="grid md:grid-cols-2 gap-10">
-        <div className="w-full">
-          <h1 className="text-xl text-center font-bold p-5">Reactions</h1>
-          <div className="flex items-center justify-around">
-            <button onClick={() => handleClick({"like": survey.like+1})} className="btn btn-success ">Like: {survey.like}</button>
-            <button onClick={() => handleClick({"dislike": survey.dislike+1})} className="btn btn-success ">Dislike: {survey.dislike}</button>
+          <div className="w-full">
+            <h1 className="text-xl text-center font-bold p-5">Reactions</h1>
+            <div className="flex items-center justify-around">
+              <button
+                onClick={() => handleLikeClick()}
+                className="btn btn-success "
+              >
+                {
+                  liked?`Liked: ${likeCount}`:`Like: ${likeCount}`
+                }
+              </button>
+              <button
+                onClick={() => handleDislikeClick()}
+                className="btn btn-success "
+              >
+                {
+                  disliked?`Disliked: ${dislikeCount}`:`Dislike: ${dislikeCount}`
+                }
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="w-full">
-          <h1 className="text-xl text-center font-bold p-5">Votes</h1>
-          <div className="flex items-center justify-around">
-            <button onClick={() => handleClick({"yes": survey.yes+1})} className="btn btn-success ">Yes: {survey.yes}</button>
-            <button onClick={() => handleClick({"no": survey.no+1})} className="btn btn-success ">No: {survey.no}</button>
+          <div className="w-full">
+            <h1 className="text-xl text-center font-bold p-5">Votes</h1>
+            <div className="flex items-center justify-around">
+              <button
+                onClick={() => handleYesClick()}
+                className="btn btn-success "
+              >
+                Yes: {survey.yes}
+              </button>
+              <button
+                onClick={() => handleNoClick()}
+                className="btn btn-success "
+              >
+                No: {survey.no}
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </>
