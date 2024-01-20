@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import SCard from "../../components/AppComponents/SCard";
+import { url } from "../../constants/constats";
 
 
 const Surveys = () => {
   const [surveys, setSurveys] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/featured")
+    fetch(`${url}/featured`)
       .then((res) => res.json())
       .then((data) => setSurveys(data));
   }, []);

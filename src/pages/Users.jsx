@@ -3,12 +3,13 @@ import { AuthContext } from "../contexts/AuthProvider";
 // import moment from "moment/moment";
 import { FaHammer } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { url } from "../constants/constats";
 
 const Users = () => {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users", {
+    fetch(`${url}/users`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import moment from "moment/moment";
+import { url } from "../constants/constats";
 
 const hasDatePassed = (deadline) => {
   const targetMoment = moment(deadline);
@@ -64,7 +65,7 @@ const CreateSurvey = () => {
         no,
         vote,
       };
-      fetch("http://localhost:5000/createsurvey", {
+      fetch(`${url}/createsurvey`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

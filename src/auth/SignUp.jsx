@@ -7,6 +7,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import auth from "../firebase/firebase.config";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../constants/constats";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -70,7 +71,7 @@ const SignUp = () => {
 
             // TODO: Tanstack should added
             // Store email and access in database
-            fetch(`http://localhost:5000/users/${user.email}`, {
+            fetch(`${url}/users/${user.email}`, {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -112,7 +113,7 @@ const SignUp = () => {
 
         // TODO: Tanstack should added
         // Store email and access in database
-        fetch(`http://localhost:5000/users/${user.email}`, {
+        fetch(`${url}/users/${user.email}`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

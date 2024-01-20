@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { createContext, useState } from "react";
+import { url } from "../constants/constats.jsx";
 
 import PropTypes from "prop-types";
 export const AuthContext = createContext(null);
@@ -56,7 +57,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     setIsLoading(true);
     if(user?.email) {
-      fetch(`http://localhost:5000/users/${user.email}`)
+      fetch(`${url}/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {

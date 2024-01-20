@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import SCard from "../SCard";
+import { url } from "../../../constants/constats";
 
 const LatestSurveys = () => {
   const [surveys, setSurveys] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/latest")
+    fetch(`${url}/latest`)
       .then((res) => res.json())
       .then((data) => setSurveys(data));
   }, []);

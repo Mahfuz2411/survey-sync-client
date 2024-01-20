@@ -5,10 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import { url } from "../constants/constats";
 // import Swal from "sweetalert2";
 
 // {
-//   fetch("http://localhost:5000/users", {
+//   fetch("${url}/users", {
 //           method: "POST",
 //           headers: {
 //             "content-type": "application/json",
@@ -62,7 +63,7 @@ const SignIn = () => {
     e.preventDefault();
     // TODO: Tanstack should added
     // get email and access in database
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`${url}/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -88,7 +89,7 @@ const SignIn = () => {
     // get email and access in database
     signInWithGoogle()
       .then(({ user }) => {
-        fetch(`http://localhost:5000/users/${user.email}`, {
+        fetch(`${url}/users/${user.email}`, {
           method: "POST",
           headers: {
             "content-type": "application/json",
