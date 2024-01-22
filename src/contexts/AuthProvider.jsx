@@ -61,8 +61,9 @@ const AuthProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          console.log(data);
+          // setUser(data);
           setAccess(data.access);
+          console.log(data);
         }
       })
     } 

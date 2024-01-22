@@ -14,7 +14,7 @@ const SCard = ({ survey }) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        email: user.email,
+        email: user?.email,
       },
     })
       .then((res) => res.json())
@@ -24,7 +24,7 @@ const SCard = ({ survey }) => {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          email: user.email,
+          email: user?.email,
         },
       })
         .then((res) => res.json())
@@ -36,15 +36,15 @@ const SCard = ({ survey }) => {
     <>
       <div className="card w-full mx-auto bg-base-100 shadow-xl">
         <div className="card-body">
-         <div className="flex">
-         <h2 className="card-title">{survey?.tittle?.length > 10 ? survey?.tittle?.slice(0, 10) + '...' : survey?.tittle}</h2>
-         <div className="badge badge-success badge-outline">{survey.category}</div>
+         <div className="">
+         <h2 className="card-title text-3xl">{survey?.tittle?.length > 10 ? survey?.tittle?.slice(0, 10) + '...' : survey?.tittle}</h2>
+         <div className="text-success text-xs border-0">{survey.category}</div>
          </div>
-          <p>{survey?.description?.length > 20 ? survey?.description?.slice(0, 20) + '...' : survey?.description}</p>
+          <p className="py-5">{survey?.description?.length > 20 ? survey?.description?.slice(0, 20) + '...' : survey?.description}</p>
           <div className="card-actions flex items-center justify-between">
             <div className="badge badge-success badge-outline">Like: {survey.like}</div>
             <div className="badge badge-success badge-outline">Voted: {survey.vote}</div>
-            <NavLink to={`/details/${survey._id}`} className="btn btn-success">Details</NavLink>
+            <NavLink to={`/details/${survey._id}`} className="btn btn-success w-full">Details</NavLink>
           </div>
         </div>
       </div>
