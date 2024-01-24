@@ -2,7 +2,6 @@ import moment from "moment";
 import React from "react";
 
 const CommentsCard = ({ comment }) => {
-  // console.log(comment);
   return (
     <>
       <div className="w-full bg-green-100 p-5 flex flex-col gap-2 rounded-xl">

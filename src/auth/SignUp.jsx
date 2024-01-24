@@ -213,7 +213,7 @@ const SignUp = () => {
                   Sign Up
                 </button>
                 <label className="label">
-                  <Link to="/signin" className="label-text-alt link link-hover">
+                  <Link to="/login" className="label-text-alt link link-hover">
                     Already have an Account?
                   </Link>
                 </label>

@@ -317,7 +317,8 @@ const SurveyDetails = () => {
   return (
     <>
       <div className="container card card-body mx-auto max-w-2xl p-10">
-        <h1 className="text-5xl text-success p-5">{survey.tittle}</h1>
+        <h1 className="text-5xl text-success p-5 pb-0">{survey.tittle}</h1>
+        <div className="text-success text-xs border-0 p-6 pt-0">{survey.category}</div>  
         <p className="p-5">{survey.description}</p>
         <div className="grid md:grid-rows-2 gap-2 w-full">
           <div className="grid grid-cols-2 items-center justify-around gap-5">
@@ -378,7 +379,7 @@ const SurveyDetails = () => {
           <div className="text-center">
             <form onSubmit={handleComment} className="join">
               <input
-                className="input input-bordered join-item border-success"
+                className="input input-bordered join-item border-success shadow-none focus:outline-none focus:border-success"
                 placeholder="Place your comment here"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

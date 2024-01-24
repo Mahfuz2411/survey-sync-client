@@ -71,7 +71,7 @@ const CreateSurvey = () => {
         .then((data) => {
           // console.log(data);
           if (data.insertedId) {
-            //! form.reset();  should be uncomment
+            ! form.reset();
             Swal.fire({
               title: "Succes",
               text: "Survey added succesfully",
