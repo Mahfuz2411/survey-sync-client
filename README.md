@@ -1,0 +1,5 @@
+- Surveyor can make surveys
+- User can like/dislike on a survey
+- User can vote on a survey
+- User can be a pro user
+- Admin can see all user in his dashboard
