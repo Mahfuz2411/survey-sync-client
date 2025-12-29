@@ -1,5 +1,5 @@
 // import { useContext, useEffect, useState } from "react";
-// import { url } from "../../constants/constats";
+// import { url } from "../../constants/constants";
 // import { AuthContext } from "../../contexts/AuthProvider";
 import { Link } from "react-router";
 

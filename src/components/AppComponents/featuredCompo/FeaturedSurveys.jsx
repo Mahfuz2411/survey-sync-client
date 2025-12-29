@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SCard from "../SCard";
-import { url } from "../../../constants/constats";
+import { url } from "../../../constants/constants";
 
 const FeaturedSurveys = () => {
   const [loading, setLoading] = useState(true);

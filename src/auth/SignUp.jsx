@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import auth from "../firebase/firebase.config";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
-import { url } from "../constants/constats";
+import { url } from "../constants/constants";
 
 const SignUp = () => {
   const [user, setUser] = useState({

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import moment from "moment/moment";
-import { url } from "../../constants/constats";
+import { url } from "../../constants/constants";
 
 const hasDatePassed = (deadline) => {
   const targetMoment = moment(deadline);

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import SCard from "../../components/AppComponents/SCard";
-import { url } from "../../constants/constats";
+import { url } from "../../constants/constants";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 

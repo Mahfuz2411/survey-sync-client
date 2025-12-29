@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
-import { url } from "../constants/constats";
+import { url } from "../constants/constants";
 // import Swal from "sweetalert2";
 
 // {

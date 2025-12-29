@@ -7,7 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { createContext, useState } from "react";
-import { url } from "../constants/constats.jsx";
+import { url } from "../constants/constants.jsx";
 
 import PropTypes from "prop-types";
 export const AuthContext = createContext(null);
