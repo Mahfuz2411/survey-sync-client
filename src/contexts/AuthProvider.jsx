@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
         if (data) {
           // setUser(data);
           setAccess(data.access);
-          console.log(data);
+          // console.log(data);
         }
       })
     } 
