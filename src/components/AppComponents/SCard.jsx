@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { url } from "../../constants/constats";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { NavLink } from "react-router";
 
 const SCard = ({ survey }) => {
   const { user, access } = useContext(AuthContext);

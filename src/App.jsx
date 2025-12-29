@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import Header from "./components/AppComponents/Header";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/AppComponents/Footer";

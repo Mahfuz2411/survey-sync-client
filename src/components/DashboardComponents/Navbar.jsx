@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import { FaComments, FaDollarSign, FaHome, FaUsers, FaEdit } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {

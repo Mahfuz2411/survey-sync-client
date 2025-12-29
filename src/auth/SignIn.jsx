@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { BsGoogle } from "react-icons/bs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
