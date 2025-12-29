@@ -11,7 +11,7 @@ const SCard = ({ survey }) => {
   // const [likeCount, setLikeCount] = useState(0);
   // const [voteCount, setVoteCount] = useState(0);
   // console.log(user);
-  
+
 
 
   // useEffect(()=> {
@@ -24,7 +24,7 @@ const SCard = ({ survey }) => {
   //   })
   //     .then((res) => res.json())
   //     .then((data) => setLikeCount(data.likeCount));
-    
+
   //     fetch(`${url}/totalvote/${survey._id}`, {
   //       method: "GET",
   //       headers: {
@@ -39,25 +39,54 @@ const SCard = ({ survey }) => {
 
   return (
     <>
-      <div className="card w-full mx-auto bg-base-100 shadow-xl">
+      <div className="card w-full mx-auto bg-base-100 dark:bg-[#1D232A] shadow-xl">
         <div className="card-body">
-         <div className="">
-         <h2 className="card-title text-3xl">{survey?.tittle?.length > 10 ? survey?.tittle?.slice(0, 10) + '...' : survey?.tittle}</h2>
-         <div className="text-success text-xs border-0">{survey.category}</div>
-         </div>
-          <p className="py-5">{survey?.description?.length > 20 ? survey?.description?.slice(0, 20) + '...' : survey?.description}</p>
+          <div>
+            <h2 className="card-title text-3xl text-gray-900 dark:text-gray-100">
+              {survey?.tittle?.length > 10
+                ? survey?.tittle?.slice(0, 10) + "..."
+                : survey?.tittle}
+            </h2>
+
+            <div className="text-success text-xs border-0">
+              {survey.category}
+            </div>
+          </div>
+
+          <p className="py-5 text-gray-700 dark:text-gray-300">
+            {survey?.description?.length > 20
+              ? survey?.description?.slice(0, 20) + "..."
+              : survey?.description}
+          </p>
+
           <div className="flex flex-col xl:flex-row items-center justify-between">
             <div className="w-full flex xl:hidden justify-between mb-2">
-              <div className="btn btn-success w-[48%]"><BiLike />: {survey.like}</div>
-              <div className="btn btn-success w-[48%]"><GiVote/>: {survey.vote}</div>
+              <div className="btn btn-success w-[48%]">
+                <BiLike /> : {survey.like}
+              </div>
+              <div className="btn btn-success w-[48%]">
+                <GiVote /> : {survey.vote}
+              </div>
             </div>
-            <Link to={`/details/${survey._id}`} className="btn btn-success w-full xl:w-[55%]">Details</Link>
-            <div className="hidden xl:flex btn btn-success w-[20%]"><BiLike />: {survey.like}</div>
-            <div className="hidden xl:flex btn btn-success w-[20%]"><GiVote/>: {survey.vote}</div>
+
+            <Link
+              to={`/details/${survey._id}`}
+              className="btn btn-success w-full xl:w-[55%]"
+            >
+              Details
+            </Link>
+
+            <div className="hidden xl:flex btn btn-success w-[20%]">
+              <BiLike /> : {survey.like}
+            </div>
+            <div className="hidden xl:flex btn btn-success w-[20%]">
+              <GiVote /> : {survey.vote}
+            </div>
           </div>
         </div>
       </div>
     </>
+
   );
 };
 
