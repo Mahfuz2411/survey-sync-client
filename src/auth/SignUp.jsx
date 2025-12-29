@@ -152,17 +152,15 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="w-full max-w-sm lg:max-w-3xl mx-auto hero min-h-screen">
+      <div className="w-full max-w-sm lg:max-w-4xl mx-auto hero mt-10 mb-20">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="w-full px-5 text-center lg:text-left">
             <h1 className="text-5xl font-bold">Register now!</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Get started with SurveySync today. Create an account to build surveys, collect votes, and explore what people really think.
             </p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form className="card-body" onSubmit={handleCreateAccount}>
               <div className="form-control">
                 <input
@@ -170,7 +168,7 @@ const SignUp = () => {
                   name="fullName"
                   value={user.fullName}
                   placeholder="Full Name"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   onChange={handleOnChangeInp}
                   required
                 />
@@ -180,7 +178,7 @@ const SignUp = () => {
                   type="text"
                   placeholder="Image Link"
                   onChange={handleOnChangeInp}
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   name="imgLink"
                   value={user.imgLink}
                   required
@@ -193,7 +191,7 @@ const SignUp = () => {
                   onChange={handleOnChangeInp}
                   type="email"
                   placeholder="email"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
@@ -204,11 +202,11 @@ const SignUp = () => {
                   onChange={handleOnChangeInp}
                   type="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control mt-6">
+              <div className="flex flex-col form-control mt-6">
                 <button type="submit" className="btn btn-primary">
                   Sign Up
                 </button>

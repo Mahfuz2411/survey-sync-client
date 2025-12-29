@@ -134,24 +134,23 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="w-full max-w-sm lg:max-w-3xl mx-auto hero min-h-screen">
+      <div className="w-full max-w-sm lg:max-w-3xl mx-auto hero mt-10 mb-20">
         <div className="hero-content flex-col ">
           <div className="w-full px-5 text-center ">
             <h1 className="text-3xl md:text-5xl font-bold">
               Welcome <span className="text-success">B</span>ack!
             </h1>
             <p className="py-6">
-              Dont miss your next opportunity. Sign in to stay updated on you
-              Professional world.
+              Stay connected with real opinions and make data-driven decisions effortlessly.
             </p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSignInWithEmail} className="card-body">
               <div className="form-control">
                 <input
                   type="email"
                   placeholder="Email"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   name="email"
                   value={user.email}
                   onChange={handleOnChangeInp}
@@ -162,14 +161,14 @@ const SignIn = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   name="password"
                   value={user.password}
                   onChange={handleOnChangeInp}
                   required
                 />
               </div>
-              <div className="form-control mt-6">
+              <div className="flex flex-col form-control mt-6">
                 <button className="btn btn-success">Log In</button>
                 <label className="label">
                   <Link to="/signup" className="label-text-alt link link-hover">
