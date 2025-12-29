@@ -35,7 +35,7 @@ const Pricing = () => {
         access==="user"?"Become a pro user":"You are not eligible"
       }
       </h1>
-      <button onClick={handleClick} className={`btn ${access==="user"?"btn-success": "btn-disabled"} max-w-[120px]`}>Click Here</button>
+      <button onClick={handleClick} className={`btn ${access==="user"?"btn-success": "btn-disabled"} max-w-30`}>Click Here</button>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthProvider";
 // import moment from "moment/moment";
 import { FaHammer } from "react-icons/fa";
 import Swal from "sweetalert2";
+
 import { url } from "../../constants/constants";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 
 const Users = () => {
