@@ -7,8 +7,8 @@ import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
 import Surveys from "../pages/AppPages/Surveys";
 import PrivateRoute from "./PrivateRoute";
-import Users from "../pages/Users";
-import CreateSurvey from "../pages/CreateSurvey";
+import Users from "../pages/DashboardPages/Users";
+import CreateSurvey from "../pages/DashboardPages/CreateSurvey";
 import SurveyDetails from "../pages/AppPages/SurveyDetails";
 import Pricing from "../pages/AppPages/Pricing";
 
@@ -63,11 +63,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "users",
-        element: <Users />
+        element: (
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        )
       },
       {
         path: "create",
-        element: <CreateSurvey />,
+        element: (
+          <PrivateRoute>
+            <CreateSurvey />
+          </PrivateRoute>
+        ),
       },
     ]
   },

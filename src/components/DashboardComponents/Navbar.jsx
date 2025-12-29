@@ -96,7 +96,7 @@ const Navbar = () => {
           <input type="checkbox" id="dropdown-toggle" className="hidden" />
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 rounded-box w-52 shadow-2xl bg-transparent"
+            className="menu menu-sm dropdown-content mt-3 z-1 p-2 rounded-box w-52 shadow-2xl bg-transparent"
           >
             {links}
           </ul>
