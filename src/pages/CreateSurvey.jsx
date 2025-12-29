@@ -11,7 +11,7 @@ const hasDatePassed = (deadline) => {
   const threshold = moment.duration(24, 'hours');
   if (timeDifference >= threshold) {
     return true;
-  } 
+  }
   return false;
 }
 
@@ -47,7 +47,7 @@ const CreateSurvey = () => {
         text: "Deadline has passed",
         confirmButtonText: "Ok",
       });
-    }  else {
+    } else {
       const newSurvey = {
         email: user.email,
         tittle,
@@ -71,7 +71,7 @@ const CreateSurvey = () => {
         .then((data) => {
           // console.log(data);
           if (data.insertedId) {
-            ! form.reset();
+            !form.reset();
             Swal.fire({
               title: "Succes",
               text: "Survey added succesfully",
@@ -87,7 +87,7 @@ const CreateSurvey = () => {
             text: "Something went wrong",
             confirmButtonText: "Ok",
           });
-         });
+        });
     }
   };
   return (
@@ -99,11 +99,12 @@ const CreateSurvey = () => {
         <form onSubmit={handleCreateSurvey} action="">
           <div className="md:flex">
             <div className="form-control w-full p-10">
-              <label className="label">
+              <label htmlFor="tittle" className="label mb-2">
                 <span className="label-text">Tittle</span>
               </label>
-              <div className="join">
+              <div className="join w-full">
                 <input
+                  id="tittle"
                   type="text"
                   name="tittle"
                   className="input input-bordered border-success focus:border-success join-item w-full shadow-none focus:outline-success"
@@ -115,11 +116,12 @@ const CreateSurvey = () => {
           {/* Form Deadline and Category row*/}
           <div className="md:flex">
             <div className="form-control w-full p-10">
-              <label className="label">
+              <label htmlFor="deadline" className="label mb-2">
                 <span className="label-text">Deadline</span>
               </label>
-              <div className="join">
+              <div className="join w-full">
                 <input
+                  id="deadline"
                   type="date"
                   name="deadline"
                   className="input input-bordered border-success focus:border-success join-item w-full shadow-none focus:outline-success"
@@ -128,10 +130,10 @@ const CreateSurvey = () => {
               </div>
             </div>
             <div className="form-control w-full p-10">
-              <label className="label">
+              <label htmlFor="category" className="label mb-2">
                 <span className="label-text">Category</span>
               </label>
-              <div className="join">
+              <div className="join w-full">
                 <select
                   id="category"
                   name="category"
@@ -153,12 +155,12 @@ const CreateSurvey = () => {
           {/* Form Description row*/}
           <div className="md:flex">
             <div className="form-control w-full p-10">
-              <label className="label">
+              <label htmlFor="description" className="label mb-2">
                 <span className="label-text">Description</span>
               </label>
-              <div className="join">
+              <div className="join w-full">
                 <textarea
-                  type="text"
+                  id="description"
                   name="description"
                   className="w-full h-52 textarea textarea-success focus:outline-success"
                   placeholder="Description"
@@ -167,7 +169,7 @@ const CreateSurvey = () => {
             </div>
           </div>
           <div className="form-control w-full p-10">
-            <div className="join">
+            <div className="join w-full">
               <input
                 type="submit"
                 name="Submit"
@@ -178,6 +180,7 @@ const CreateSurvey = () => {
           </div>
         </form>
       </div>
+
     </>
   );
 };
