@@ -1,7 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { url } from "../../constants/constats";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { NavLink } from "react-router";
+import { Link } from "react-router";
+
+import { GiVote } from "react-icons/gi";
+import { BiLike } from "react-icons/bi";
 
 const SCard = ({ survey }) => {
   const { user, access } = useContext(AuthContext);
@@ -41,10 +44,10 @@ const SCard = ({ survey }) => {
          <div className="text-success text-xs border-0">{survey.category}</div>
          </div>
           <p className="py-5">{survey?.description?.length > 20 ? survey?.description?.slice(0, 20) + '...' : survey?.description}</p>
-          <div className="card-actions flex items-center justify-between">
-            <div className="badge badge-success badge-outline">Like: {survey.like}</div>
-            <div className="badge badge-success badge-outline">Voted: {survey.vote}</div>
-            <NavLink to={`/details/${survey._id}`} className="btn btn-success w-full">Details</NavLink>
+          <div className="flex items-center justify-between">
+            <Link to={`/details/${survey._id}`} className="btn btn-success w-[55%]">Details</Link>
+            <div className="btn btn-success w-[20%]"><BiLike />: {survey.like}</div>
+            <div className="btn btn-success w-[20%]"><GiVote/>: {survey.vote}</div>
           </div>
         </div>
       </div>
