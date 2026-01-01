@@ -42,9 +42,9 @@ const SCard = ({ survey }) => {
       <div className="card w-full mx-auto bg-base-100 dark:bg-[#1D232A] shadow-xl">
         <div className="card-body">
           <div>
-            <h2 className="card-title text-3xl text-gray-900 dark:text-gray-100">
-              {survey?.tittle?.length > 10
-                ? survey?.tittle?.slice(0, 10) + "..."
+            <h2 className="card-title text-xl text-gray-900 dark:text-gray-100">
+              {survey?.tittle?.length > 50
+                ? survey?.tittle?.slice(0, 50) + "..."
                 : survey?.tittle}
             </h2>
 
@@ -54,8 +54,8 @@ const SCard = ({ survey }) => {
           </div>
 
           <p className="py-5 text-gray-700 dark:text-gray-300">
-            {survey?.description?.length > 20
-              ? survey?.description?.slice(0, 20) + "..."
+            {survey?.description?.length > 150
+              ? survey?.description?.slice(0, 150) + "..."
               : survey?.description}
           </p>
 
